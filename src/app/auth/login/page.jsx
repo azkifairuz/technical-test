@@ -47,7 +47,7 @@ export default function Login() {
             Lupa password?
           </p>
         </form>
-        <button className="p-3 bg-primary rounded-md text-white w-full">
+        <button className="p-3 bg-primary hover:bg-red-500 rounded-md rounded-md text-white w-full">
           Masuk
         </button>
       </div>

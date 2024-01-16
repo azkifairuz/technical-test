@@ -1,13 +1,28 @@
 "use client";
+import Dialog from "../../../components/Dialog";
 import React, { useState } from "react";
 import Link from "next/link";
 import Logo from "../../../assets/logo_pokemon.png";
+import pikachu from "../../../assets/password-reset.png";
 import mdiEye from "../../../assets/mdi_eye.svg";
 import mdiHide from "../../../assets/mdi_hide.svg";
 import Image from "next/image";
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
+  const [content, setContent] = useState("none");
 
+  const handleCloseOverlay = () => {
+    // Reset content when closing
+    setIsOverlayVisible(!isOverlayVisible);
+
+    setContent("default");
+  };
+
+  const handleResetPassword = () => {
+    // Change content when resetting password
+    setContent("passwordReset");
+  };
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -43,12 +58,15 @@ export default function Login() {
               onClick={togglePasswordVisibility}
             ></Image>
           </div>
-          <p className="text-primary cursor-pointer pt-3 text-sm font-bold self-end">
+          <p
+            onClick={handleCloseOverlay}
+            className="text-primary cursor-pointer pt-3 text-sm font-bold self-end"
+          >
             Lupa password?
           </p>
         </form>
         <Link href="/" className="w-full">
-          <button className="p-3 bg-primary hover:bg-red-500 rounded-md rounded-md text-white w-full">
+          <button className="p-3 bg-primary hover:bg-red-500 rounded-md  text-white w-full">
             Masuk
           </button>
         </Link>
@@ -59,6 +77,47 @@ export default function Login() {
           <Link href="/auth/register">Daftar Sekarang</Link>
         </strong>
       </div>
+      {isOverlayVisible && content == 'default' &&  (
+        <Dialog>
+          <Dialog.Card>
+            <Dialog.CloseButton onClick={handleCloseOverlay} />
+            <Dialog.Header>Lupa Password?</Dialog.Header>
+            <Dialog.Content>
+              <p className="text-sm text-center text-[#8D7777]">
+                Kami akan mengirim instruksi melalui email untuk mengganti
+                password. Silakan masukkan email kamu.
+              </p>
+              <form action="" className="flex flex-col gap-3 w-full">
+                <label className="text-sm">Email</label>
+                <input
+                  className="p-3 rounded-md items-stretch"
+                  type="text"
+                  placeholder="Masukan Email"
+                />
+              </form>
+            </Dialog.Content>
+            <Dialog.Button onClick={handleResetPassword}>
+              Reset Password
+            </Dialog.Button>
+          </Dialog.Card>
+        </Dialog>
+      )}
+      {content == 'passwordReset' &&  (
+        <Dialog>
+          <Dialog.Card>
+            <Dialog.Content>
+             <div className="flex flex-col justify-center items-center">
+             <Image src={pikachu} width={223.256} height={160}></Image>
+              <h1 className="text-primary text-xl font-bold">Email Sudah Terkirim</h1>
+              <p className="text-sm text-center text-[#8D7777]">Silahkan cek email kamu untuk melakukan proses pergantian password yang baru.</p>
+             </div>
+            </Dialog.Content>
+            <Dialog.Button onClick={handleCloseOverlay}>
+              Tutup
+            </Dialog.Button>
+          </Dialog.Card>
+        </Dialog>
+      )}
     </main>
   );
 }

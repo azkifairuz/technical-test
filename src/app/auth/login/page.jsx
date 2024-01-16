@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import Logo from "../../../assets/logo_pokemon.png";
 import mdiEye from "../../../assets/mdi_eye.svg";
 import mdiHide from "../../../assets/mdi_hide.svg";
@@ -14,9 +14,9 @@ export default function Login() {
   return (
     <main className="bg-surface h-screen flex gap-10 justify-center items-center flex-col">
       <div>
-        <Image src={Logo} alt="Pokemon Logo" width={271.762} height={100}/>
+        <Image src={Logo} alt="Pokemon Logo" width={271.762} height={100} />
       </div>
-      <div className="w-[480px] flex justify-center items-start flex-col gap-5 py-5 px-10 bg-white rounded-xl shadow-md">
+      <div className="w-[480px] flex justify-center items-start flex-col gap-5 py-5 px-10 bg-white rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.5)]">
         <h6 className="text-primary items-stretch text-base font-bold font-sans">
           Masuk
         </h6>
@@ -47,9 +47,11 @@ export default function Login() {
             Lupa password?
           </p>
         </form>
-        <button className="p-3 bg-primary hover:bg-red-500 rounded-md rounded-md text-white w-full">
-          Masuk
-        </button>
+        <Link href="/" className="w-full">
+          <button className="p-3 bg-primary hover:bg-red-500 rounded-md rounded-md text-white w-full">
+            Masuk
+          </button>
+        </Link>
       </div>
       <div className="text-sm">
         Belum Punya Akun?{" "}

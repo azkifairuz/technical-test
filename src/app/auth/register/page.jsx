@@ -34,7 +34,7 @@ export default function Register() {
       <div>
         <Image src={Logo} alt="Pokemon Logo" width={271.762} height={100} />
       </div>
-      <div className="w-[480px] flex justify-center items-start flex-col gap-5 py-5 px-10 bg-white rounded-xl shadow-md">
+      <div className="w-[480px] flex justify-center items-start flex-col gap-5 py-5 px-10 bg-white rounded-xl shadow-[0px_0px_4px_0px_rgba(0,0,0,0.5)]">
         <h6 className="text-primary items-stretch text-base font-bold font-sans">
           Daftar
         </h6>
